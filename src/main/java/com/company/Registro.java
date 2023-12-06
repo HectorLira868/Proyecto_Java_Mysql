@@ -2,6 +2,7 @@ package com.company;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 public class Registro extends javax.swing.JFrame {
@@ -26,7 +27,7 @@ public class Registro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
+        btn_salir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txt_nombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -34,14 +35,23 @@ public class Registro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         combo_facultad = new javax.swing.JComboBox<>();
         btn_registrar = new javax.swing.JButton();
-        btn_actualizar = new javax.swing.JButton();
+        btn_consultar = new javax.swing.JButton();
+        btn_limpiar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txt_area_info = new javax.swing.JTextArea();
+        btn_verificar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        btn_buscar = new javax.swing.JButton();
+        txt_buscar = new javax.swing.JTextField();
+        btn_modificar = new javax.swing.JButton();
+        btn_eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton2.setText("Salir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_salir.setText("Salir");
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_salirActionPerformed(evt);
             }
         });
 
@@ -53,17 +63,58 @@ public class Registro extends javax.swing.JFrame {
 
         combo_facultad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Facultad", "Ingenieria de Sistemas", "Ingenieria Civil", "Ingenieria Quimica", "Ingenieria Electronica" }));
 
-        btn_registrar.setText("Registrar Datos");
+        btn_registrar.setText("Registrar");
         btn_registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_registrarActionPerformed(evt);
             }
         });
 
-        btn_actualizar.setText("Actualizar Datos");
-        btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
+        btn_consultar.setText("Consultar");
+        btn_consultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_actualizarActionPerformed(evt);
+                btn_consultarActionPerformed(evt);
+            }
+        });
+
+        btn_limpiar.setText("Limpiar");
+        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarActionPerformed(evt);
+            }
+        });
+
+        txt_area_info.setColumns(20);
+        txt_area_info.setRows(5);
+        jScrollPane1.setViewportView(txt_area_info);
+
+        btn_verificar.setText("Verificar si la BD tiene datos");
+        btn_verificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_verificarActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Digite id a buscar");
+
+        btn_buscar.setText("Buscar");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
+
+        btn_modificar.setText("Modificar");
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
+
+        btn_eliminar.setText("Eliminar");
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarActionPerformed(evt);
             }
         });
 
@@ -72,25 +123,43 @@ public class Registro extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txt_nombre)
-                    .addComponent(txt_telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                    .addComponent(combo_facultad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
-                .addComponent(btn_registrar)
-                .addGap(18, 18, 18)
-                .addComponent(btn_actualizar)
-                .addGap(27, 27, 27)
-                .addComponent(jButton2)
-                .addGap(45, 45, 45))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_limpiar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(combo_facultad, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_salir))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_registrar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btn_consultar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_verificar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_modificar)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_eliminar)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_buscar, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btn_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,29 +167,42 @@ public class Registro extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(btn_registrar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_limpiar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(combo_facultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                    .addComponent(combo_facultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_salir))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(11, 11, 11)
+                        .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_buscar)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_registrar)
-                    .addComponent(jButton2)
-                    .addComponent(btn_actualizar))
-                .addContainerGap(117, Short.MAX_VALUE))
+                    .addComponent(btn_consultar)
+                    .addComponent(btn_verificar)
+                    .addComponent(btn_modificar)
+                    .addComponent(btn_eliminar))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_salirActionPerformed
 
     private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
         try {
@@ -132,24 +214,118 @@ public class Registro extends javax.swing.JFrame {
             insertar.setString(4, combo_facultad.getSelectedItem().toString());
             insertar.executeUpdate();
             
+            JOptionPane.showMessageDialog(null, "Datos Registrados!!");
+            
             conectar.cerrarConexion();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
     }//GEN-LAST:event_btn_registrarActionPerformed
 
-    private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
-        /*try {
+    private void btn_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultarActionPerformed
+        txt_area_info.setText("");
+        try {
             Connection conexion = conectar.conectar();
-            PreparedStatement insertar = conexion.prepareStatement("update bd_registros.empleados values(?,?,?,?)");
-            insertar.setString(1, "0");
-            insertar.setString(2, txt_nombre.getText().trim());
-            insertar.setString(3, txt_telefono.getText().trim());
-            insertar.setString(4, combo_facultad.getSelectedItem().toString());
+             PreparedStatement seleccionar = conexion.prepareStatement("select * from bd_registros.empleados");
+            
+            ResultSet consulta = seleccionar.executeQuery();
+            
+            while (consulta.next()) {                
+                txt_area_info.append(consulta.getString(1));
+                txt_area_info.append("  ");          
+                txt_area_info.append(consulta.getString(2));
+                txt_area_info.append("  ");  
+                txt_area_info.append(consulta.getString(3));
+                txt_area_info.append("  ");          
+                txt_area_info.append(consulta.getString(4));
+                txt_area_info.append("\n");          
+
+            }
+            conectar.cerrarConexion();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
-        }*/
-    }//GEN-LAST:event_btn_actualizarActionPerformed
+        }
+    }//GEN-LAST:event_btn_consultarActionPerformed
+
+    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
+        txt_nombre.setText("");
+        txt_telefono.setText("");
+        txt_area_info.setText("");
+    }//GEN-LAST:event_btn_limpiarActionPerformed
+
+    private void btn_verificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verificarActionPerformed
+        try {
+            Connection conexion = conectar.conectar();
+            PreparedStatement seleccionar = conexion.prepareStatement("select * from bd_registros.empleados");
+            
+            ResultSet consulta = seleccionar.executeQuery();
+            if (consulta.next()) {
+                JOptionPane.showMessageDialog(null, "La bd tiene datos");
+            } else{
+                JOptionPane.showMessageDialog(null, "La bd no tiene datos!!");
+            }
+            
+            conectar.cerrarConexion();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+        }
+    }//GEN-LAST:event_btn_verificarActionPerformed
+
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
+        try {
+            Connection conexion = conectar.conectar();
+            PreparedStatement eliminar = conexion.prepareStatement("delete from bd_registros.empleados where id = ?");
+            
+            eliminar.setString(1, txt_buscar.getText().trim());
+            
+            eliminar.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro eliminado!!");
+            
+            conectar.cerrarConexion();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+        }
+    }//GEN-LAST:event_btn_eliminarActionPerformed
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        try {
+            Connection conexion = conectar.conectar();
+            String id = txt_buscar.getText().trim();
+            
+            PreparedStatement modificar = conexion.prepareStatement("update bd_registros.empleados set nombre = ?, telefono = ?, profesion = ? where id = " + id);
+            
+            modificar.setString(1, txt_nombre.getText().trim());
+            modificar.setString(2, txt_telefono.getText().trim());
+            modificar.setString(3, combo_facultad.getSelectedItem().toString());
+            modificar.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Registro actualizado!!");
+            conectar.cerrarConexion();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+        }
+    }//GEN-LAST:event_btn_modificarActionPerformed
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        try {
+            Connection conexion = conectar.conectar();
+            
+            PreparedStatement buscar = conexion.prepareStatement("select * from bd_registros.empleados where id = ?");
+            buscar.setString(1, txt_buscar.getText().trim());
+            
+            ResultSet consulta = buscar.executeQuery();
+            while (consulta.next()) {
+                txt_nombre.setText(consulta.getString("nombre"));
+                txt_telefono.setText(consulta.getString("telefono"));
+                combo_facultad.setSelectedItem(consulta.getString("profesion"));
+            }
+            
+            JOptionPane.showMessageDialog(null, "Se encontraron los datos!!");
+            conectar.cerrarConexion();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btn_buscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,13 +363,22 @@ public class Registro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_actualizar;
+    private javax.swing.JButton btn_buscar;
+    private javax.swing.JButton btn_consultar;
+    private javax.swing.JButton btn_eliminar;
+    private javax.swing.JButton btn_limpiar;
+    private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_registrar;
+    private javax.swing.JButton btn_salir;
+    private javax.swing.JButton btn_verificar;
     private javax.swing.JComboBox<String> combo_facultad;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txt_area_info;
+    private javax.swing.JTextField txt_buscar;
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
